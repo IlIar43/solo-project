@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-    color: 'black'
+    color: 'black',
+    marginLeft: '-80px'
   },
   search: {
     position: 'relative',
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
+      marginLeft: '-10px',
       width: 'auto',
     },
     color: 'black',
@@ -106,49 +107,49 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-//   const menuId = 'primary-search-account-menu';
-//   const renderMenu = (
-//     <Menu
-//       anchorEl={anchorEl}
-//       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       id={menuId}
-//       keepMounted
-//       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       open={isMenuOpen}
-//       onClose={handleMenuClose}
-//     >
-//       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-//       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-//     </Menu>
-//   );
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
 
-//   const mobileMenuId = 'primary-search-account-menu-mobile';
-//   const renderMobileMenu = (
-//     <Menu
-//       anchorEl={mobileMoreAnchorEl}
-//       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       id={mobileMenuId}
-//       keepMounted
-//       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       open={isMobileMenuOpen}
-//       onClose={handleMobileMenuClose}
-//     >
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
       
-//     </Menu>
-//   );
+    </Menu>
+  );
 
   return (
     <div className={classes.grow}>
       <AppBar position="static" style={{backgroundColor:' #ff8552'}}>
         <Toolbar>
-          {/* <IconButton
+          <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
           <div className={classes.search} >
             <div className={classes.searchIcon}>
               <SearchIcon />

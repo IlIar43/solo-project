@@ -10,6 +10,7 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 const useStyles = makeStyles({
   root: {
     width: '100vw',
+    height: '40px'
   },
 });
 
