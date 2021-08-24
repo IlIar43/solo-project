@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,6 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Grid } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { productContext } from '../../contexts/ProductsContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
     color: 'black',
-    marginLeft: '-80px'
+    marginLeft: '-80px',
   },
   search: {
     position: 'relative',
@@ -86,6 +89,23 @@ export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const history = useHistory()
+  const [searchVal, setSearchVal] = useState(getSearchVal('q') || '')
+  const {getProducts} = useContext(productContext)
+
+
+  function getSearchVal(){
+    const search = new URLSearchParams(history.location.search)
+    return search.get('q')
+  }
+
+  const handleValue = (e) => {
+    const search = new URLSearchParams(history.location.search)
+    search.set('q', e.target.value)
+    history.push(`${history.location.pathname}?${search.toString()}`)
+    setSearchVal(e.target.value)
+    getProducts(history)
+  }
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -161,17 +181,20 @@ export default function PrimarySearchAppBar() {
                   input: classes.inputInput,
                 }}
               inputProps={{ 'aria-label': 'search' }}
+              value={searchVal}
+              onChange={handleValue}
             />
           </div>
           <Grid container justifyContent='center'>
-                <Typography className={classes.title} variant="h6" noWrap>
+                <Typography className={classes.title} variant="h6" noWrap >
                   TerraMusic
                 </Typography>
             </Grid>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-              <span style={{marginRight: '25px', color: 'black'}}>Регистрация</span>
-              <span style={{color: 'black'}}>Войти</span>
+            <Link to ='/login' style={{textDecoration: 'none'}}>
+              <span style={{color: 'black', fontWeight: 'bold'}}>Войти</span>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
