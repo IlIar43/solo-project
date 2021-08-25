@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { productContext } from '../../contexts/ProductsContext';
+import './Add.css'
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,7 +32,8 @@ const Add = () => {
         artist: '',
         genre: '',
         image: '',
-        player: ''
+        player: '',
+        comments: []
     })
 
     const  { addProduct } = useContext(productContext)
@@ -55,7 +57,7 @@ const Add = () => {
             <h1 style={{textAlign: 'center'}}>Добавить музыку</h1>
                 <div style={{display: 'flex', justifyContent: 'space-around', color: 'black'}}>
                     <div>
-                        <img style={{width: '400px'}} src={values.image ? values.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmW8VoNKFg4RKdOI0JZTin_EKy62iPk4dtkg&usqp=CAU"} alt="smartphone image"/>
+                        <img id='addImage' style={{width: '400px'}} src={values.image ? values.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmW8VoNKFg4RKdOI0JZTin_EKy62iPk4dtkg&usqp=CAU"} alt="smartphone image"/>
                     </div>
 
                     <div 

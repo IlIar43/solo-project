@@ -10,7 +10,8 @@ const INIT_STATE = {
     edit: null,
     player: [],
     cart: {},
-    cartLength: 0
+    cartLength: 0,
+    detail: {}
 }
 
 const reducer = (state = INIT_STATE, action) => {
@@ -18,7 +19,7 @@ const reducer = (state = INIT_STATE, action) => {
         case "GET_PRODUCTS":
             return {
                 ...state, products: action.payload.data,
-                paginatedPages: Math.ceil(action.payload.headers["x-total-count"] / 12)
+                paginatedPages: Math.ceil(action.payload.headers["x-total-count"] / 10)
             }
         case "GET_PLAYER":
             return {...state, player: action.payload}
@@ -28,6 +29,8 @@ const reducer = (state = INIT_STATE, action) => {
             return {...state, cartLength: action.payload}
         case "GET_CART": 
             return {...state, cart: action.payload}
+        case "GET_DETAIL_PRODUCT": 
+            return {...state, detail: action.payload}
     default: return state
     }
 }
@@ -36,8 +39,9 @@ const ProductContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
     const getProducts = async (history) => {
+        console.log(history)
         const search = new URLSearchParams(history.location.search)
-        search.set('_limit', 12)
+        search.set('_limit', 10)
         history.push(`${history.location.pathname}?${search.toString()}`)
         let data = await axios(`${API}/${window.location.search}`)
         dispatch({
@@ -91,14 +95,12 @@ const ProductContextProvider = ({children}) => {
         if(!cart){
             cart = {
                 products: [],
-                totalPrice: 0
             }
         }
 
         let newProduct = {
             item: product,
             count: 1,
-            subPrice: 0
         }
 
         let filteredCart = cart.products.filter(elem => elem.item.id === product.id)
@@ -107,8 +109,7 @@ const ProductContextProvider = ({children}) => {
         }else {
             cart.products.push(newProduct)
         }
-        // newProduct.subPrice = calcSubPrice(newProduct)
-        // cart.totalPrice= calcTotalPrice(cart.products)
+
         localStorage.setItem('cart', JSON.stringify(cart))
         dispatch({
             type: "CHANGE_CART_COUNT",
@@ -121,7 +122,6 @@ const ProductContextProvider = ({children}) => {
         if(!cart){
             cart = {
                 products: [],
-                totalPrice: 0
             }
         }
         dispatch({
@@ -135,7 +135,6 @@ const ProductContextProvider = ({children}) => {
         if(!cart){
             cart = {
                 products: [],
-                totalPrice: 0
             }
         }
         dispatch({
@@ -163,11 +162,18 @@ const ProductContextProvider = ({children}) => {
         if(!cart) {
             cart = {
                 products: [],
-                totalPrice: 0
             }
         }
         let newCart = cart.products.filter(elem => elem.item.id === id)
         return newCart.length > 0 ? true : false
+    }
+
+    const getDetail = async (id) => {
+        const {data} = await axios.get(`${API}/${id}`)
+        dispatch({
+            type: "GET_DETAIL_PRODUCT",
+            payload: data
+        })
     }
 
 
@@ -181,6 +187,7 @@ const ProductContextProvider = ({children}) => {
             paginatedPages: state.paginatedPages,
             cart: state.cart,
             cartLength: state.cartLength,
+            detail: state.detail,
             getProducts,
             addProduct,
             deleteProduct,
@@ -191,7 +198,8 @@ const ProductContextProvider = ({children}) => {
             addProductInCart,
             changeProductCount,
             checkProductInCart,
-            getCartLength
+            getCartLength,
+            getDetail,
         }}>
             {children}
         </productContext.Provider>

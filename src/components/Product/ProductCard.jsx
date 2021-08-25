@@ -23,6 +23,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Grid } from '@material-ui/core';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import './ProductCard.css'
+import Comment from '../Comment/Comment';
 
 
 
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     height: '50px',
     borderRadius: '5px',
     padding: '5px',
-    marginLeft: '10px'
+    marginLeft: '10px',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -84,9 +85,9 @@ export default function ProductCard({item, history}) {
   )
 
   return (
-    <div style={{width: '100vw', backgroundColor: '#fff4cf', display: 'flex', justifyContent: 'center', borderLeft: '1px solid black', borderRight: '1px solid black'}}>
+    <div id="border" style={{width: '100vw', backgroundColor: '#fff4cf', display: 'flex', justifyContent: 'center', borderLeft: '1px solid black', borderRight: '1px solid black',}}>
       <div>
-        <Card className={classes.root}>
+        <Card className={classes.root} id="card">
           <Grid container display='flex'justifyContent='space-between' alignItems='center'>
           <div style={{display: 'flex', alignItems: 'center'}}>
           <CardMedia
@@ -96,11 +97,12 @@ export default function ProductCard({item, history}) {
             onClick={() => getPlayer(item.id)}
             style={{cursor: 'pointer'}}
           />
+          <Link to={`/detail/${item.id}`} style={{textDecoration:'none', color: 'black'}}>
             <CardHeader
               title={item.title}
               subheader={item.artist}
               />
-
+            </Link>
           </div>
               {/* <Grid container display='block'> */}
 

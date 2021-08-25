@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import { Container, Grid, makeStyles } from "@material-ui/core"
 import { useAuth } from "../../contexts/AuthContext";
 import { background, color } from "../../helpers/constant";
+import './Login.css'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     <Grid container justify="center" alignItems="center" className={classes.grid}>
       <Card className={classes.size}>
         <Card.Body>
-          <h2 className="text-center mb-4" style={{display:'flex', justifyContent:'center'}}>Log In</h2>
+          <h2 className="text-center mb-4" style={{display:'flex', justifyContent:'center'}}>Вход</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Grid container justify="center" align="center">
           <Form onSubmit={handleSubmit} >
@@ -69,12 +70,12 @@ const useStyles = makeStyles((theme) => ({
 
 
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Пароль</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
           </div>
             <Button disabled={loading} className={classes.btn} type="submit" style={{marginTop: '20px'}}>
-              Log In
+              Войти
             </Button>
           </Form>
           </Grid>
@@ -82,10 +83,10 @@ const useStyles = makeStyles((theme) => ({
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
 
           <div className="w-100 text-center mt-3">
-            <Link className={classes.color} to="/forgot-password">Forgot Password?</Link>
+            <Link className={classes.color} to="/forgot-password"><h4>Забыли пароль?</h4></Link>
           </div>
       <div className="w-100 text-center mt-2">
-        <Link className={classes.color} to="/signup">Need an account? Sign Up</Link>
+        <Link className={classes.color} to="/signup"><h4>Нужен аккаунт? Регистрируйтесь</h4></Link>
       </div>
         </div>
       </Card>

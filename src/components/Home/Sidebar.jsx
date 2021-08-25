@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { productContext } from '../../contexts/ProductsContext';
+import './Sidebar.css'
 
 
 const useStyles = makeStyles(theme => ({
@@ -51,7 +52,7 @@ const Sidebar = () => {
 
     return (
         <Grid container >
-        <Paper elevation={2} className={classes.paper}>  
+        <Paper elevation={2} className={classes.paper} id='filter'>  
         <FormControl component="fieldset">
         <FormLabel component="legend" style={{fontWeight: 'bold'}}>Жанры</FormLabel>
         <RadioGroup aria-label="gender" name="gender1" value={genre} onChange={handleChangeGenre} style={{
@@ -63,10 +64,12 @@ const Sidebar = () => {
             <FormControlLabel value="Classic" control={<Radio />} label="Classic" />
             <FormControlLabel value="Rap" control={<Radio />} label="Rap" />
             <FormControlLabel value="Electronic" control={<Radio />} label="Electronic" />
-            {/* <FormControlLabel value="Ужасы" control={<Radio />} label="Ужасы" /> */}
-            {/* <FormControlLabel value="Мультфильмы" control={<Radio />} label="Мультфильмы" /> */}
-            {/* <FormControlLabel value="Комедия" control={<Radio />} label="Комедия" /> */}
-            {/* <FormControlLabel value="Фантастика" control={<Radio />} label="Фантастика" /> */}
+            <FormControlLabel value="Hip-Hop" control={<Radio />} label="Hip-Hop" />
+            <FormControlLabel value="K-POP" control={<Radio />} label="K-POP" />
+            <FormControlLabel value="Uighur" control={<Radio />} label="Uighur" />
+            <FormControlLabel value="Disco" control={<Radio />} label="Disco" />
+            <FormControlLabel value="Rock" control={<Radio />} label="Rock" />
+            <FormControlLabel value="R&B" control={<Radio />} label="R&B" />
         </RadioGroup>
         </FormControl>
         </Paper>

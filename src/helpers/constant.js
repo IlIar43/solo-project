@@ -8,7 +8,6 @@ export const ACTIONS = {
     AUTH_LOGOUT: "AUTH_LOGOUT",
 }
 
-export const PRODUCT_LIMIT = 6;
 export const color = 'white'
 export const background = '#39393a'
 export const user = 'admin@gmail.com'

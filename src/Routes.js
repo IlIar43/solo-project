@@ -11,6 +11,7 @@ import SignUp from './components/Auth/SignUp'
 import AuthContextProvider from './contexts/AuthContext';
 import ForgotPassword from './components/Auth/ForgotPassword'
 import Favorites from './components/Favorites/Favorites';
+import ProductDetail from './components/Product/ProductDetail'
 
 const Routes = () => {
     return (
@@ -24,6 +25,8 @@ const Routes = () => {
                             <Route exact path='/add' component={Add}/>
                             <Route exact path='/edit/:id' component={Edit} />
                             <Route exact path='/favorites' component={Favorites} />
+                            <Route exact path="/detail/:id" component={ProductDetail}/>
+
 
                             <Route exact path='/login' component={Login} />
                             <Route exact path='/signup' component={SignUp} />

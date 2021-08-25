@@ -17,15 +17,16 @@ const FooterPlayer = () => {
 
 
     return (
-        <div>
+        <>
+
             <ReactAudioPlayer
             className='player'
             src={player.player}
             controls
             autoPlay
-            style={{position: 'fixed', bottom: 0, width: '100vw', marginTop: '5px'}}
+            style={{width: '100%', position: 'fixed', bottom: 0, marginTop: '5px', zIndex: 1 }}
         />
-        </div>
+        </>
     );
 };
 

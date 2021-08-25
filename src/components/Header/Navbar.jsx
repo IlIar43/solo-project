@@ -15,6 +15,7 @@ import { Grid } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import { productContext } from '../../contexts/ProductsContext';
+import './Navbar.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,17 +31,18 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
     color: 'black',
-    marginLeft: '-80px',
+    marginLeft: '-150px',
   },
   search: {
     position: 'relative',
+    // marginLeft: '100px',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
+    // marginRight: theme.spacing(2),
+    // marginLeft: '-250px',
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: '-10px',
@@ -71,12 +73,7 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
+
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -162,14 +159,14 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static" style={{backgroundColor:' #ff8552'}}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
-          </IconButton>
+            {/* <MenuIcon /> */}
+          {/* </IconButton> */} 
           <div className={classes.search} >
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -186,14 +183,14 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <Grid container justifyContent='center'>
-                <Typography className={classes.title} variant="h6" noWrap >
-                  TerraMusic
+                <Typography className={classes.title} variant="h5" noWrap >
+                  TerraMusica
                 </Typography>
             </Grid>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Link to ='/login' style={{textDecoration: 'none'}}>
-              <span style={{color: 'black', fontWeight: 'bold'}}>Войти</span>
+              <span className='login' style={{color: 'black', fontWeight: 'bold'}}>Войти</span>
             </Link>
           </div>
         </Toolbar>

@@ -4,7 +4,7 @@ import ProductList from '../Product/ProductList';
 
 const Content = () => {
     return (
-        <Grid item md={9}>
+        <Grid item md={8}>
             <ProductList />
         </Grid>
     );

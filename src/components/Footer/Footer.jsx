@@ -8,6 +8,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import './Footer.css'
 
 
 const useStyles = makeStyles({
@@ -34,10 +35,14 @@ export default function LabelBottomNavigation() {
         <h2 >Избранное</h2>
       </Link>
       <Grid container display="flex" justifyContent="flex-end" alignItems="center" style={{maxWidth:'320px'}}>
-        <BottomNavigationAction icon={<FacebookIcon />} style={{color: 'white'}}/>
-        <BottomNavigationAction icon={<TwitterIcon />} style={{color: 'white'}}/>
-        <BottomNavigationAction icon={<InstagramIcon />} style={{color: 'white'}}/>
-        <BottomNavigationAction icon={<YouTubeIcon />} style={{color: 'white'}}/>
+        <div style={{width: '100%', height: '100%',display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
+
+        <FacebookIcon className='icons' style={{color: 'white'}}/>
+        <TwitterIcon className='icons' style={{color: 'white'}}/>
+        <InstagramIcon className='icons' style={{color: 'white'}}/>
+        <YouTubeIcon className='icons' style={{color: 'white'}}/>
+        </div>
+
       </Grid>
     </BottomNavigation>
   );

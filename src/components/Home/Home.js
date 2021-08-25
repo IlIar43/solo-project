@@ -12,8 +12,8 @@ const Home = () => {
             <Grid container spacing-md={3} spacing-sm={3} display='flex' justifyContent='center'>
                 <Sidebar />
                 <Content /> 
-            </Grid>
             <FooterPlayer />
+            </Grid>
 
         </div>
     );
